@@ -1,0 +1,298 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&family=DM+Sans:wght@400;500;700&family=Bangers&display=swap");
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Maximalism / Dopamine design system.
+ * Dark cosmic base + 5 clashing accents. Borders, shadows and patterns are
+ * loud on purpose. All visual decisions flow from the tokens defined here.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bangers", "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Maximalism accent palette — referenced via bg-max-*, text-max-*, border-max-* */
+  --color-max-magenta: var(--max-magenta);
+  --color-max-cyan: var(--max-cyan);
+  --color-max-yellow: var(--max-yellow);
+  --color-max-orange: var(--max-orange);
+  --color-max-purple: var(--max-purple);
+  --color-max-surface: var(--max-surface);
+
+  --color-chart-1: var(--max-magenta);
+  --color-chart-2: var(--max-cyan);
+  --color-chart-3: var(--max-yellow);
+  --color-chart-4: var(--max-orange);
+  --color-chart-5: var(--max-purple);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1rem;
+
+  /* Dark cosmic foundation (the system is dark-mode-first; light is identical) */
+  --background: oklch(0.14 0.07 295);
+  --foreground: oklch(1 0 0);
+
+  --max-surface: oklch(0.27 0.13 295);
+  --max-magenta: oklch(0.68 0.31 340);
+  --max-cyan: oklch(0.86 0.18 180);
+  --max-yellow: oklch(0.93 0.21 100);
+  --max-orange: oklch(0.72 0.22 45);
+  --max-purple: oklch(0.55 0.29 295);
+
+  --card: oklch(0.27 0.13 295);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.2 0.1 295);
+  --popover-foreground: oklch(1 0 0);
+
+  --primary: var(--max-magenta);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--max-cyan);
+  --secondary-foreground: oklch(0.14 0.07 295);
+  --muted: oklch(0.27 0.13 295);
+  --muted-foreground: oklch(0.85 0.04 295);
+  --accent: var(--max-yellow);
+  --accent-foreground: oklch(0.14 0.07 295);
+
+  --destructive: oklch(0.65 0.27 25);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: var(--max-magenta);
+  --input: oklch(0.27 0.13 295);
+  --ring: var(--max-cyan);
+
+  --sidebar: oklch(0.2 0.1 295);
+  --sidebar-foreground: oklch(1 0 0);
+  --sidebar-primary: var(--max-magenta);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: var(--max-cyan);
+  --sidebar-accent-foreground: oklch(0.14 0.07 295);
+  --sidebar-border: var(--max-yellow);
+  --sidebar-ring: var(--max-magenta);
+}
+
+.dark {
+  /* Same loud palette — system is dark-mode-first */
+  --background: oklch(0.14 0.07 295);
+  --foreground: oklch(1 0 0);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--max-yellow);
+    color: var(--background);
+  }
+}
+
+/* ============================================================
+ * Pattern utilities — layer at least two per section
+ * ============================================================ */
+@layer utilities {
+  .pattern-dots {
+    background-image: radial-gradient(circle, color-mix(in oklab, var(--max-magenta) 60%, transparent) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+  }
+  .pattern-dots-cyan {
+    background-image: radial-gradient(circle, color-mix(in oklab, var(--max-cyan) 55%, transparent) 1.5px, transparent 1.5px);
+    background-size: 28px 28px;
+  }
+  .pattern-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent 0 12px,
+      color-mix(in oklab, var(--max-yellow) 18%, transparent) 12px 24px
+    );
+  }
+  .pattern-stripes-magenta {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent 0 14px,
+      color-mix(in oklab, var(--max-magenta) 16%, transparent) 14px 28px
+    );
+  }
+  .pattern-checker {
+    background-image:
+      conic-gradient(from 90deg at 1px 1px, transparent 90deg, color-mix(in oklab, var(--max-cyan) 8%, transparent) 0);
+    background-size: 40px 40px;
+  }
+  .pattern-mesh {
+    background:
+      radial-gradient(ellipse at 15% 20%, color-mix(in oklab, var(--max-magenta) 28%, transparent) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 30%, color-mix(in oklab, var(--max-cyan) 25%, transparent) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 90%, color-mix(in oklab, var(--max-purple) 30%, transparent) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 75%, color-mix(in oklab, var(--max-yellow) 18%, transparent) 0%, transparent 55%);
+  }
+
+  /* ============= Shadow utilities ============= */
+  .shadow-hard-2 {
+    box-shadow: 8px 8px 0 var(--max-yellow), 16px 16px 0 var(--max-magenta);
+  }
+  .shadow-hard-3 {
+    box-shadow: 6px 6px 0 var(--max-cyan), 12px 12px 0 var(--max-magenta), 18px 18px 0 var(--max-yellow);
+  }
+  .glow-magenta {
+    box-shadow:
+      0 0 24px color-mix(in oklab, var(--max-magenta) 55%, transparent),
+      0 0 48px color-mix(in oklab, var(--max-purple) 35%, transparent);
+  }
+  .glow-cyan {
+    box-shadow:
+      0 0 24px color-mix(in oklab, var(--max-cyan) 55%, transparent),
+      0 0 48px color-mix(in oklab, var(--max-magenta) 30%, transparent);
+  }
+  .glow-yellow {
+    box-shadow:
+      0 0 24px color-mix(in oklab, var(--max-yellow) 60%, transparent),
+      0 0 48px color-mix(in oklab, var(--max-orange) 40%, transparent);
+  }
+
+  /* ============= Text shadow stacks ============= */
+  .text-shadow-pop {
+    text-shadow:
+      2px 2px 0 var(--max-purple),
+      4px 4px 0 var(--max-magenta);
+  }
+  .text-shadow-mega {
+    text-shadow:
+      3px 3px 0 var(--max-purple),
+      6px 6px 0 var(--max-magenta),
+      9px 9px 0 var(--max-cyan);
+  }
+  .text-shadow-sm {
+    text-shadow: 2px 2px 0 var(--max-purple);
+  }
+
+  /* ============= Gradient text ============= */
+  .text-gradient-rainbow {
+    background: linear-gradient(
+      90deg,
+      var(--max-magenta),
+      var(--max-cyan),
+      var(--max-yellow),
+      var(--max-orange),
+      var(--max-magenta)
+    );
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradient-shift 5s ease infinite;
+  }
+}
+
+/* ============================================================
+ * Keyframe animations
+ * ============================================================ */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-18px) rotate(5deg); }
+}
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(18px) rotate(-5deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 24px color-mix(in oklab, var(--max-magenta) 55%, transparent),
+      0 0 48px color-mix(in oklab, var(--max-purple) 35%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 36px color-mix(in oklab, var(--max-magenta) 85%, transparent),
+      0 0 72px color-mix(in oklab, var(--max-cyan) 55%, transparent);
+  }
+}
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(4deg); }
+}
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@layer utilities {
+  .animate-float        { animation: float 6s ease-in-out infinite; }
+  .animate-float-reverse{ animation: float-reverse 5s ease-in-out infinite; }
+  .animate-pulse-glow   { animation: pulse-glow 2.4s ease-in-out infinite; }
+  .animate-spin-slow    { animation: spin-slow 20s linear infinite; }
+  .animate-wiggle       { animation: wiggle 1.2s ease-in-out infinite; }
+  .animate-bounce-subtle{ animation: bounce-subtle 2s ease-in-out infinite; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+  }
+}
